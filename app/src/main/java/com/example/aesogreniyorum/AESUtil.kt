@@ -37,7 +37,7 @@ class AESUtil (context: Context){
         editor.putString("MyObject", json)
         sharedPreferences.edit().putString("keyObject", json)
             .apply()
-        //println("JSON: $json")
+        //      BOŞ DÖNÜYOR KEY BU ŞEKİL OLMUYOR. Olmaz da zaten değeri anlamlandıramıyor
     }
     fun getKey() : Key{
         return key

@@ -32,6 +32,39 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val aesUtil = AESUtil(this)
+
+        /*
+        val key = aesUtil.getKey()
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(key)
+        //editor.putString("keyObject", json).apply()
+        //editor.putString("AES_KEY", Base64.encodeToString(key.encoded, Base64.DEFAULT))
+        //println("KEY: $key")
+        //val myKey = sharedPreferences.getString("AES_KEY",null)
+        //println("MY KEY: $myKey")
+         */
+
+        var encryptedText = ""
+        var decryptedText = ""
+
+        binding.encryptButton.setOnClickListener{
+            encryptedText = aesUtil.encrypt(binding.editTextText.text.toString())
+            binding.editTextText.setText(encryptedText)
+        }
+
+        binding.decryptButton.setOnClickListener{
+            decryptedText = aesUtil.decrypt(encryptedText)
+            binding.editTextText.setText(decryptedText)
+        }
+
+
+
+
+
+
+
 
 
         /*
@@ -77,16 +110,7 @@ class MainActivity : AppCompatActivity() {
         }
          */
 
-        val aesUtil = AESUtil(this)
-        val key = aesUtil.getKey()
-        val editor = sharedPreferences.edit()
-        val gson = Gson()
-        val json = gson.toJson(key)
-        //editor.putString("keyObject", json).apply()
-        editor.putString("AES_KEY", Base64.encodeToString(key.encoded, Base64.DEFAULT))
-        println("KEY: $key")
-        val myKey = sharedPreferences.getString("AES_KEY",null)
-        println("MY KEY: $myKey")
+
 /*              WORKS
         val originalText = "Merhaba, dünya!"
         // Şifrele
@@ -105,18 +129,7 @@ class MainActivity : AppCompatActivity() {
         var decryptedText = ""
  */
 
-        var encryptedText = ""
-        var decryptedText = ""
 
-        binding.encryptButton.setOnClickListener{
-            encryptedText = aesUtil.encrypt(binding.editTextText.text.toString())
-            binding.editTextText.setText(encryptedText)
-        }
-
-        binding.decryptButton.setOnClickListener{
-            decryptedText = aesUtil.decrypt(encryptedText)
-            binding.editTextText.setText(decryptedText)
-        }
 /*
         val aesUtil = AESUtil(context = applicationContext)
         val key = aesUtil.getKey()
